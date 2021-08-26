@@ -15,7 +15,7 @@ class UtilsController extends BaseController {
   async uploadFiles() {
     const { ctx, success } = this;
     const data = await ctx.service.utils.uploadFiles();
-    console.log(data);
+    // console.log(data);
     if (data) {
       success(data);
     } else {

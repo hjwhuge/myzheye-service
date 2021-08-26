@@ -62,6 +62,7 @@ class UtilsService extends Service {
         return false;
       }
     } catch (err) {
+      console.log(err);
       //如果出现错误，关闭管道
       await sendToWormhole(stream);
       return false;

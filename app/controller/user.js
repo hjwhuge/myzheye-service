@@ -10,7 +10,7 @@ class UserController extends BaseController {
     let { email } = ctx.helper.checkToken(token);
     const res = await ctx.service.user.find({
       where: { email },
-      columns: ["id", "email", "nickName"],
+      columns: ["id", "email", "nickName", "userImage"],
     });
     success(res[0]);
   }
