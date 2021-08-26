@@ -61,7 +61,7 @@ module.exports = (appInfo) => {
   };
 
   //不需要验证token的路由
-  config.routerAuth = ["/user/login", "/user"];
+  config.routerAuth = ["/user/login", "/user", "/upload"];
 
   // add your middleware config here
   //中间件执行顺序则是按照数组中的顺序执行
@@ -78,7 +78,9 @@ module.exports = (appInfo) => {
       // 用户名
       user: "root",
       // 密码
-      password: "Hjw123!@#",
+      // 华为电脑mysql密码
+      // password: "Hjw123!@#",
+      password: "root",
       // 数据库名
       database: "zheye",
     },
