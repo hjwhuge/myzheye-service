@@ -18,6 +18,9 @@ class ColumnController extends BaseController {
   async create() {
     const { ctx, success } = this;
     // console.log(ctx.request.body);
+    if (ctx.request?.body?.author) {
+      ctx.request.body.author = JSON.stringify(ctx.request.body.author);
+    }
     const res = await ctx.service.post.insert(ctx.request.body);
     if (res) {
       success("文章新增成功");
