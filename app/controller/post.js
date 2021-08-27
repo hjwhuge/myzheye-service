@@ -27,7 +27,9 @@ class ColumnController extends BaseController {
   // 文章详情
   async show() {
     const { ctx, success } = this;
-    const res = await ctx.service.post.findOne(ctx.params);
+    let res = await ctx.service.post.findOne(ctx.params);
+    res.author = JSON.parse(res.author);
+    // console.log(res.author);
     success(res);
   }
 
@@ -41,7 +43,7 @@ class ColumnController extends BaseController {
     }
   }
 
-  // 更新文章
+  // 删除文章
   async destroy() {
     const { ctx, success } = this;
     const { id } = ctx.params;
