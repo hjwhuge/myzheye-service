@@ -40,6 +40,9 @@ class ColumnController extends BaseController {
   async update() {
     const { ctx, success } = this;
     const { id } = ctx.params;
+    if (ctx.request?.body?.author) {
+      ctx.request.body.author = JSON.stringify(ctx.request.body.author);
+    }
     const res = await ctx.service.post.update({ id, ...ctx.request.body });
     if (res) {
       success("文章修改成功");
