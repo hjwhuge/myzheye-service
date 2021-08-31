@@ -10,7 +10,7 @@ class ColumnController extends BaseController {
     const res = await ctx.service.post.find({
       page,
       size,
-      query: { columnId },
+      query: { columnId, isDel: 0 },
     });
     success(res);
   }
