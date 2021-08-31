@@ -45,6 +45,17 @@ class UserService extends Service {
       return false;
     }
   }
+  // 删除文章-修改isDel字段
+  async delete(data) {
+    // console.log(data);
+    const result = await this.app.mysql.update(
+      "post",
+      { isDel: 1 },
+      { where: data }
+    );
+    return result;
+  }
+  // 删除文章-直接删除数据库
   async destroy(data) {
     const result = await this.app.mysql.delete("post", data);
     return result;

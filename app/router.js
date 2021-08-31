@@ -14,6 +14,7 @@ module.exports = (app) => {
   // resources 参数： 'routerName', 'pathMatch', controller
   router.resources("column", "/columns", controller.column);
 
+  router.post("/posts/delete", controller.post.delete);
   router.resources("post", "/posts", controller.post);
 
   router.post("/upload", controller.utils.uploadFiles);

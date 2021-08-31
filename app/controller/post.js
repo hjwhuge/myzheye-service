@@ -30,9 +30,10 @@ class ColumnController extends BaseController {
   // 文章详情
   async show() {
     const { ctx, success } = this;
-    let res = await ctx.service.post.findOne(ctx.params);
-    res.author = JSON.parse(res.author);
-    // console.log(res.author);
+    let res = await ctx.service.post.findOne({ isDel: 0, ...ctx.params });
+    if (res && res.author) {
+      res.author = JSON.parse(res.author);
+    }
     success(res);
   }
 
@@ -49,7 +50,16 @@ class ColumnController extends BaseController {
     }
   }
 
-  // 删除文章
+  // 删除文章-修改isDel字段
+  async delete() {
+    const { ctx, success } = this;
+    const { id } = ctx.request.body;
+    const deleteRes = await ctx.service.post.delete({ id });
+    const res = await ctx.service.post.findOne({ id });
+    // console.log(res);
+    success(res, "文章删除成功");
+  }
+  // 删除文章-直接删除数据库
   async destroy() {
     const { ctx, success } = this;
     const { id } = ctx.params;
